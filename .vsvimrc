@@ -1,0 +1,89 @@
+"検索時大文字小文字を区別しない
+set ignorecase
+"検索文字列に大文字が含まれる場合は区別する
+set smartcase
+"leaderを設定
+let mapleader = ","
+"行数表示
+set number
+
+
+"vsvimrcの再読み込み
+nnoremap <Space>g :source ~/.vsvimrc
+"space割り当て解除(誤爆を防ぐため)
+nnoremap <Space> <Nop>
+"3行飛び上下移動 (VisualStudioショートカット"Ctrl+K"を無効にする方法 → https://github.com/jaredpar/VsVim/issues/1082)
+noremap <S-j> jjj
+noremap <S-k> jjj
+noremap <C-j> kkk
+noremap <C-k> kkk
+"行頭文字に移動
+noremap <Space>h ^
+"行末移動
+noremap <Space>l $
+"カーソル下のシンボルをリネーム /gI:大文字を区別する /gc:一つずつ変換
+nnoremap <Space>r *N:%s//
+
+"選択範囲をコメントアウト
+noremap <Space>// :s/^/\/\/<Enter><ESC><ESC>
+"選択範囲のコメントアウト削除
+noremap <Space>/ :s/\/\//<Enter><ESC><ESC>
+
+"行番号移動
+nnoremap <Space><Enter> G
+"タブ移動左右
+" nnoremap <S-h> gT
+nnoremap <S-h> :vsc ウィンドウ.前のタブ<cr>
+" nnoremap <S-l> gt
+nnoremap <S-l> :vsc ウィンドウ.次のタブ<cr>
+vnoremap <S-h> <Nop>
+vnoremap <S-l> <Nop>
+"カーソル下のシンボルをコピー
+nnoremap <Space>y wbvey
+"カーソル下のシンボルをカット
+nnoremap <Space>c wbvec
+"括弧内をコピー
+nnoremap <Space>vy %lv%%hy
+"括弧内の削除  入力文字に対応( " : "here" , ( : (here) , { : {here} )
+nnoremap <Space>d di
+" ()括弧内の選択
+nnoremap <Space>v9 vi(
+" {}括弧内の選択
+nnoremap <Space>v[ vi{
+" ""括弧内の選択
+nnoremap <Space>v' vi"
+"行の連結(カーソル位置の行に、下の行を連結)
+noremap <Space>j gJ
+"前回のカーソル位置に戻る
+" nnoremap <Space>b <C-o>zz
+nnoremap <Space>b :vsc 表示.戻る<cr>
+"前回のカーソル位置に進む
+" nnoremap <Space>n <C-i>zz
+nnoremap <Space>n :vsc 表示.次に進む<cr>
+
+"カーソルがある行の先頭から最後の;の前までをCHK_HR()で囲む
+nnoremap <Space>9 ^iCHK_HR(<ESC>f;i)<ESC>^
+"カーソルがある行の先頭から最後の;の前までをCHK_NULLPTR()で囲む
+nnoremap <Space>0 ^iCHK_NULLPTR(<ESC>f;i)<ESC>^
+
+"カーソルがある行の先頭から最後の;の前までを Debug.Log() で囲む
+nnoremap <Space>8 ^iDebug.LogError(<ESC>f;i)<ESC>^
+
+"AceJumpコマンドをmap
+nnoremap <leader><leader> :vsc Tools.InvokeAceJumpCommand<Enter>
+
+nnoremap <leader>x ZZ
+
+nnoremap gr :vsc 編集.すべての参照を検索<cr>
+nnoremap <Space>r :vsc 編集.名前の変更<cr>
+
+nnoremap <Space>t F/a TODO @shimoda:<ESC>
+
+nnoremap ghn :vsc GitDiffMargin.NextChange<cr>
+nnoremap ghb :vsc GitDiffMargin.PreviousChange<cr>
+nnoremap ghp :vsc GitDiffMargin.ShowPopup<cr>
+
+nnoremap ghh :vsc 編集.定義をここに表示<cr>
+
+nnoremap <F2> :vsc 表示.ソリューションエクスプローラー<cr>
+nnoremap <leader>f :vsc 表示.ソリューションエクスプローラー<cr>
