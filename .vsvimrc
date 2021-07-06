@@ -87,3 +87,4 @@ nnoremap ghh :vsc 編集.定義をここに表示<cr>
 
 nnoremap <F2> :vsc 表示.ソリューションエクスプローラー<cr>
 nnoremap <leader>f :vsc 表示.ソリューションエクスプローラー<cr>
+noremap <C-p> :vsc ウィンドウ.ソリューションエクスプローラーの検索<cr>
